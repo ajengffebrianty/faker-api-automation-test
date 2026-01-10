@@ -2,7 +2,6 @@ package com.api.tests;
 
 import client.RestAPIClient;
 import io.restassured.response.Response;
-import model.Company;
 import model.CreditCard;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
