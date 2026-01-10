@@ -34,7 +34,7 @@ public class AddressTest {
         Response response = client.fetchRequest(pathAddress, address.getQueryParams());
         Assert.assertEquals(response.getStatusCode(), 200);
         int count = response.jsonPath().getList("data").size();
-        Assert.assertEquals(count, 5);
+        Assert.assertEquals(count, 5, "Incorrect number of quantities");
     }
 
     @Test
@@ -44,7 +44,7 @@ public class AddressTest {
         Response response = client.fetchRequest(pathAddress, address.getQueryParams());
         Assert.assertEquals(response.getStatusCode(), 200);
         int count = response.jsonPath().getList("data").size();
-        Assert.assertEquals(count, 10);
+        Assert.assertEquals(count, 10, "Incorrect number of quantities");
     }
 
     @Test
@@ -54,7 +54,7 @@ public class AddressTest {
         Response response = client.fetchRequest(pathAddress, address.getQueryParams());
         Assert.assertEquals(response.getStatusCode(), 200);
         int count = response.jsonPath().getList("data").size();
-        Assert.assertEquals(count, 10);
+        Assert.assertEquals(count, 10, "Incorrect number of quantities");
     }
 
     @Test
@@ -64,7 +64,7 @@ public class AddressTest {
         Response response = client.fetchRequest(pathAddress, address.getQueryParams());
         Assert.assertEquals(response.getStatusCode(), 200);
         int count = response.jsonPath().getList("data").size();
-        Assert.assertEquals(count, 1000);
+        Assert.assertEquals(count, 1000, "Incorrect number of quantities");
     }
 
     @Test
@@ -74,7 +74,7 @@ public class AddressTest {
         Response response = client.fetchRequest(pathAddress, address.getQueryParams());
         Assert.assertEquals(response.getStatusCode(), 200);
         int count = response.jsonPath().getList("data").size();
-        Assert.assertEquals(count, 1000);
+        Assert.assertEquals(count, 1000, "Incorrect number of quantities");
     }
 
     @Test
@@ -84,7 +84,7 @@ public class AddressTest {
         Response response = client.fetchRequest(pathAddress, address.getQueryParams());
         Assert.assertEquals(response.getStatusCode(), 200);
         int count = response.jsonPath().getList("data").size();
-        Assert.assertEquals(count, 10);
+        Assert.assertEquals(count, 10, "Incorrect number of quantities");
     }
 
     @Test
@@ -93,7 +93,7 @@ public class AddressTest {
         Response response = client.fetchRequest(pathAddress, address.getQueryParams());
         Assert.assertEquals(response.getStatusCode(), 200);
         String locale = response.jsonPath().getString("locale");
-        Assert.assertEquals(locale, "en_US");
+        Assert.assertEquals(locale, "en_US", "Incorrect locale");
     }
 
     @Test
@@ -103,7 +103,7 @@ public class AddressTest {
         Response response = client.fetchRequest(pathAddress, address.getQueryParams());
         Assert.assertEquals(response.getStatusCode(), 200);
         String locale = response.jsonPath().getString("locale");
-        Assert.assertEquals(locale, "fr_FR");
+        Assert.assertEquals(locale, "fr_FR", "Incorrect locale");
     }
 
     @Test
@@ -113,7 +113,7 @@ public class AddressTest {
         Response response = client.fetchRequest(pathAddress, address.getQueryParams());
         Assert.assertEquals(response.getStatusCode(), 200);
         String locale = response.jsonPath().getString("locale");
-        Assert.assertEquals(locale, "en_US");
+        Assert.assertEquals(locale, "en_US", "Incorrect locale");
     }
 
     @Test
@@ -127,7 +127,7 @@ public class AddressTest {
                 response1.jsonPath().getList("data");
         List<Map<String, Object>> data2 =
                 response2.jsonPath().getList("data");
-        Assert.assertEquals(data1, data2);
+        Assert.assertEquals(data1, data2, "data's not match");
 
     }
 
@@ -140,10 +140,10 @@ public class AddressTest {
         List<String> countryCodes = response.jsonPath().getList("data.country_code");
         List<String> countries = response.jsonPath().getList("data.country");
         for (String country_code : countryCodes) {
-            Assert.assertEquals(country_code, "JP");
+            Assert.assertEquals(country_code, "JP", "Incorrect country code");
         }
         for (String country : countries) {
-            Assert.assertEquals(country, "Japan");
+            Assert.assertEquals(country, "Japan",  "Incorrect country");
         }
     }
 
@@ -155,16 +155,25 @@ public class AddressTest {
         Assert.assertEquals(response.getStatusCode(), 200);
         List<String> countries = response.jsonPath().getList("data.country");
         for (String country : countries) {
-            Assert.assertEquals(country, "");
+            Assert.assertEquals(country, "", "Country code not null");
         }
     }
 
     @Test
-    public void validateTypeLatLangTest() {
+    public void validateLatitudeTest() {
         Address address = new Address();
         Response response = client.fetchRequest(pathAddress, address.getQueryParams());
         Assert.assertEquals(response.getStatusCode(), 200);
         Object latitude = response.jsonPath().get("data.latitude[0]");
-        Assert.assertTrue(latitude instanceof Float);
+        Assert.assertTrue(latitude instanceof Float, "Incorrect latitude type");
+    }
+
+    @Test
+    public void validateLongitudeTest() {
+        Address address = new Address();
+        Response response = client.fetchRequest(pathAddress, address.getQueryParams());
+        Assert.assertEquals(response.getStatusCode(), 200);
+        Object longitude = response.jsonPath().get("data.longitude[0]");
+        Assert.assertTrue(longitude instanceof Float, "Incorrect longitude type");
     }
 }
