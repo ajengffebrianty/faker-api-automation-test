@@ -50,7 +50,7 @@ public class CompanyTest {
         company.setLocale("id_ID");
         Response response = client.fetchRequest(pathCompany, company.getQueryParams());
         Assert.assertEquals(response.getStatusCode(), 200);
-        Object companyAddress = response.jsonPath().get("data.addresses");
+        Object companyAddress = response.jsonPath().get("data.addresses[0]");
         Assert.assertTrue(companyAddress instanceof ArrayList, "address is not a list");
         Assert.assertNotNull(companyAddress);
     }
