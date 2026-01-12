@@ -73,7 +73,6 @@ public class PersonTest {
         LocalDate endDate   = LocalDate.parse(person.getBirthday_end());
         for (String dateString: birthday) {
             LocalDate date = LocalDate.parse(dateString);
-            System.out.println(date);
             Assert.assertTrue(
                     !date.isBefore(startDate) && !date.isAfter(endDate),
                     "Date " + date + " is out of range " + startDate + " - " + endDate
