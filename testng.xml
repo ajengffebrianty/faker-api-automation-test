@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Faker API Test Suite">
+    <listeners>
+        <listener class-name="utils.TestListener"/>
+    </listeners>
+    
+    <test name="API Tests">
+        <classes>
+            <class name="com.api.tests.AddressTest"/>
+            <class name="com.api.tests.CompanyTest"/>
+            <class name="com.api.tests.CreditCardTest"/>
+            <class name="com.api.tests.CustomTest"/>
+            <class name="com.api.tests.ImageTest"/>
+            <class name="com.api.tests.PersonTest"/>
+            <class name="com.api.tests.ProductTest"/>
+            <class name="com.api.tests.TextTest"/>
+        </classes>
+    </test>
+</suite>
